@@ -12,11 +12,8 @@ class MyController < Phase2::ControllerBase
 end
 
 server = WEBrick::HTTPServer.new(Port: 3000)
-
 server.mount_proc('/') do |request, response|
   MyController.new(request, response).go
 end
-
 trap('INT') { server.shutdown }
-
 server.start

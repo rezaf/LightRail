@@ -5,17 +5,16 @@ module Phase4
   class ControllerBase < Phase3::ControllerBase
     def redirect_to(url)
       super(url)
-      session.store_session(res)
+      session.store_session(response)
     end
 
-    def render_content(content, type)
-      super(content, type)
-      session.store_session(res)
+    def render_content(body, content_type)
+      super(body, content_type)
+      session.store_session(response)
     end
 
-    # method exposing a `Session` object
     def session
-      @session ||= Session.new(self.req)
+      @session ||= Session.new(self.request)
     end
   end
 end
