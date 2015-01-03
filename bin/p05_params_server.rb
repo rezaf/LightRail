@@ -1,3 +1,4 @@
+require 'active_support'
 require 'active_support/core_ext'
 require 'webrick'
 require_relative '../lib/phase5/controller_base'
@@ -17,7 +18,6 @@ class Cat
 
   def save
     return false unless @name.present? && @owner.present?
-
     Cat.all << self
     true
   end
