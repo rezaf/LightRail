@@ -1,36 +1,29 @@
 module Phase2
   class ControllerBase
-    attr_reader :req, :res
+    attr_reader :request, :response
 
-    # Setup the controller
-    def initialize(req, res)
-      @req = req
-      @res = res
+    def initialize(request, response)
+      @request = request
+      @response = response
       @already_built_response = false
     end
 
-    # Helper method to alias @already_built_response
     def already_built_response?
       @already_built_response
     end
 
-    # Set the response status code and header
     def redirect_to(url)
       raise exception if already_built_response?
-      @res.status = 302
-      @res["Location"] = url #"Location: #{url}"
+      @response.status = 302
+      @response["Location"] = url
       @already_built_response = true
     end
 
-    # Populate the response with content.
-    # Set the response's content type to the given type.
-    # Raise an error if the developer tries to double render.
-    def render_content(content, type)
+    def render_content(body, content_type)
       raise exception if already_built_response?
-      @res.content_type = type
-      @res.body = content
+      @response.body = body
+      @response.content_type = content_type
       @already_built_response = true
     end
-    
   end
 end
