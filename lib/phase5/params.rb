@@ -2,10 +2,12 @@ require 'uri'
 
 module Phase5
   class Params
-    def initialize(req, route_params = {})
+    def initialize(request, route_params = {})
+
     end
 
     def [](key)
+
     end
 
     def to_s
@@ -17,9 +19,11 @@ module Phase5
 
     private
     def parse_www_encoded_form(www_encoded_form)
+
     end
 
     def parse_key(key)
+      
     end
   end
 end

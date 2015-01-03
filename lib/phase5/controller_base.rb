@@ -6,6 +6,7 @@ module Phase5
     attr_reader :params
 
     def initialize(request, response, route_params = {})
+      
     end
   end
 end

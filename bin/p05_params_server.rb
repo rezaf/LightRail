@@ -10,8 +10,9 @@ class Cat
   end
 
   def initialize(params = {})
-    params ||= {}
-    @name, @owner = params["name"], params["owner"]
+    # params ||= {}
+    @name = params["name"]
+    @owner = params["owner"]
   end
 
   def save
@@ -48,16 +49,15 @@ class CatsController < Phase5::ControllerBase
 end
 
 server = WEBrick::HTTPServer.new(Port: 3000)
-server.mount_proc('/') do |req, res|
-  case [req.request_method, req.path]
+server.mount_proc('/') do |request, response|
+  case [request.request_method, request.path]
   when ['GET', '/cats']
-    CatsController.new(req, res, {}).index
+    CatsController.new(request, response, {}).index
   when ['POST', '/cats']
-    CatsController.new(req, res, {}).create
+    CatsController.new(request, response, {}).create
   when ['GET', '/cats/new']
-    CatsController.new(req, res, {}).new
+    CatsController.new(request, response, {}).new
   end
 end
-
 trap('INT') { server.shutdown }
 server.start
