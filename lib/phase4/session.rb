@@ -6,7 +6,7 @@ module Phase4
     def initialize(request)
       @session = {}
       request.cookies.each do |cookie|
-        if cookie.name.to_s == "LightRail"
+        if cookie.name.to_s == "light_rail"
           @session = JSON.parse(cookie.value)
         end
       end
@@ -21,7 +21,7 @@ module Phase4
     end
 
     def store_session(response)
-      new_cookie = WEBrick::Cookie.new('LightRail', @session.to_json)
+      new_cookie = WEBrick::Cookie.new("light_rail", @session.to_json)
       response.cookies << new_cookie
     end
   end
