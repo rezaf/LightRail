@@ -4,7 +4,7 @@ require_relative '../lib/phase2/controller_base'
 class MyController < Phase2::ControllerBase
   def go
     if @request.path == "/test_location"
-      render_content("we are in test location", "text/html")
+      render_content("We are in test location.", "text/html")
     else
       redirect_to("/test_location")
     end
