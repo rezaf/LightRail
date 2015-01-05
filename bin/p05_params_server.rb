@@ -11,7 +11,6 @@ class Cat
   end
 
   def initialize(params = {})
-    # params ||= {}
     @name = params["name"]
     @owner = params["owner"]
   end
