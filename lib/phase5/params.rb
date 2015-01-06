@@ -5,7 +5,9 @@ module Phase5
     def initialize(request, route_params = {})
       @params = {}
       @params.merge!(route_params)
-      @params.merge!(parse_www_encoded_form(request.body)) if request.body
+      if request.body
+        @params.merge!(parse_www_encoded_form(request.body))
+      end
       if request.query_string
         @params.merge!(parse_www_encoded_form(request.query_string))
       end
